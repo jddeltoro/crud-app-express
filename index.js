@@ -2,7 +2,9 @@ const express  = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const productRoute = require('./routes/product.route');
-
+const authRoute = require('./routes/auth.route');
+const dotenv = require('dotenv');
+dotenv.config();
 
 //Middleware
 app.use(express.json()); 
@@ -15,9 +17,10 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/products', productRoute);
+app.use('/api/auth', authRoute);
 
 
-mongoose.connect('mongodb+srv://jdiazdeltoro:H6AvoixQ04RVvDCq@crud-app.q0t14xf.mongodb.net/?retryWrites=true&w=majority&appName=crud-app', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.MONGO, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => {
         console.log('Connected to MongoDB');
     })
