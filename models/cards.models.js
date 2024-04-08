@@ -10,7 +10,15 @@ const cardSchema = new moongose.Schema({
         type: String,
         required: true
     },
-    price: {
+    type: {
+        type: String,
+        required: true
+    },
+    image: {
+        type: String,
+        required: true
+    },
+    value: {
         type: Number,
         required: true
     },
